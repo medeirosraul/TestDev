@@ -1,0 +1,33 @@
+﻿@model ICollection<TestDev.Models.Clientes.Cliente>
+@using TestDev.Models.Clientes
+@{
+    ViewData["Title"] = "Clientes";
+}
+
+<h1>Clientes</h1>
+<p>Os cadastros são salvos em memória, portanto os dados são perdidos quando a aplicação é resetada.</p>
+<a asp-controller="Cliente" asp-action="Criar" class="btn btn-primary">Cadastrar</a>
+<hr />
+@foreach (Cliente c in Model)
+{
+    if (c.Tipo == ClienteTipo.PessoaFisica)
+    {
+        <div>
+            <div><span><strong>Tipo: </strong> Pessoa Física</span></div>
+            <div><span><strong>Nome e Sobrenome: </strong>@c.Nome @c.Sobrenome</span></div>
+            <div><span><strong>CPF: </strong>@c.CPF</span></div>
+            <div><span><strong>Endereço: </strong>@c.Endereco.ToString()</span></div>
+        </div>
+    }
+    else
+    {
+        <div>
+            <div><span><strong>Tipo: </strong> Pessoa Jurídica</span></div>
+            <div><span><strong>Razão Social e Nome Fantasia: </strong>@c.RazaoSocial - @c.NomeFantasia</span></div>
+            <div><span><strong>CNPJ: </strong>@c.CNPJ</span></div>
+            <div><span><strong>Endereço: </strong>@c.Endereco.ToString()</span></div>
+        </div>
+    }
+    <hr />
+}
+
